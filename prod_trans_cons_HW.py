@@ -1,27 +1,26 @@
 import random
 from os import system
-#producer
+
+# producer
 def produce():
     n_list = []
     for n in range(5):
         n_list.append(random.randint(1, 10))
     return n_list
 
-#tranformer
+# tranformer
 def transform(lst):
-    res = []
-    for n in lst:
-        res.append(n // 2)
-    return res
+    for i in range(len(lst)):
+        lst[i] = lst[i] // 2
 
-#Consumer
+# Consumer
 def consume(m):
-    transformed_list = []
-    for n in m:
-        transformed_list.append(transform([n]))
+    transformed_list = m.copy()
+    transform(transformed_list)
     for i in range(len(m)):
-        print(m[i], '->', transformed_list[i][0])
+        print(m[i], '->', transformed_list[i])
+
 system('cls')
 list = produce()
-print("Random List:",list)
+print("Random List:", list)
 consume(list)
